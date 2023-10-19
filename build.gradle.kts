@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.nussknacker"
-version = "0.0.1-SNAPSHOT"
+version = "v1"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -23,11 +23,15 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("com.h2database:h2:2.2.224")
+
 }
 
 tasks.withType<Test> {
