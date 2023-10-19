@@ -1,0 +1,54 @@
+###
+# endpoint to get all movies between passed dates
+GET http://localhost:8080/movie?dateFrom=2023-01-01T10:30:00&dateEnd=2023-12-31T12:30:00
+
+###
+# get screening details like movie, and list of seats - taken and free.
+GET http://localhost:8080/screening?screeningId=1
+
+###
+### we test how validation works by using incorect name or surname with
+### we should get status code of 400 with descriptive errors message what went wrong in request
+POST http://localhost:8080/reservation
+Content-Type: application/json
+
+{
+  "screeningId":1,
+  "name":"bbb",
+  "surname":"a-a",
+  "seatsWithTypes": [
+    {"id":"4","type":"ADULT"},
+    {"id":"2","type":"ADULT"},
+    {"id":"3","type":"ADULT"}
+  ]
+}
+
+### we testing correct name and surname but we want to make reservation with one seat left between - we should also get an error
+POST http://localhost:8080/reservation
+Content-Type: application/json
+
+{
+  "screeningId":1,
+  "name":"Good",
+  "surname":"Sur-Name",
+  "seatsWithTypes": [
+    {"id":"5","type":"ADULT"},
+    {"id":"2","type":"ADULT"},
+    {"id":"3","type":"ADULT"}
+  ]
+}
+
+### correct reservation with response body
+POST http://localhost:8080/reservation
+Content-Type: application/json
+
+{
+  "screeningId":1,
+  "name":"Good",
+  "surname":"Sur-Name",
+  "seatsWithTypes": [
+    {"id":"2","type":"ADULT"},
+    {"id":"3","type":"ADULT"},
+    {"id":"4","type":"ADULT"}
+  ]
+}

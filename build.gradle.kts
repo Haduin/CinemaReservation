@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.nussknacker"
-version = "0.0.1-SNAPSHOT"
+version = "v1"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -29,6 +29,9 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("com.h2database:h2:2.2.224")
+
 }
 
 tasks.withType<Test> {
